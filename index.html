@@ -1,0 +1,78 @@
+<!DOCTYPE html5>
+<html>
+<header>
+
+    <!-- angular cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+
+    <!-- Angular Sanitize (ngSanitize) -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-sanitize.js"></script>
+
+    <!-- jQuery cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Boostrap cdn -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <script src="main.js"></script>
+
+</header>
+
+<body ng-app="signInApp" ng-controller="signInCtrl">
+    <div class="container-fluid">
+<!--
+        <p>To sign-in to general leadership, click the below button!</p>
+        <p><b>Note: in order to use this program, you will need to "allow" the page to know your location.</b></p>
+
+        <p><b>Other Note: this page will not continue tracking you after you sign in. It will only grab your current location one time and that's it. If you're tech savvy and want to see the code feel free to ask Brandon to look at it!</b></p>
+-->
+
+        <h1>MizzouThon General Leadership Sign-In</h1>
+        
+        <p>Note: You must allow the webpage to know your location!!</p>
+
+        <form ng-submit="getLocation()">
+            <fieldset>
+                <legend>Sign-In Here!</legend>
+                <input type="text" placeholder="Full Name" ng-model="fullName" ng-required="true" pattern="^[a-zA-Z ]+$" title="No special characters or digits allowed.">
+
+                </br>
+
+                <input type="text" placeholder="Code" ng-model="code" ng-required="true">
+
+                </br>
+                </br>
+
+                <input class="btn btn-outline-primary" type="submit" value="Sign-In to GL">
+            </fieldset>
+        </form>
+
+        <p ng-bind-html="resultText"></p>
+
+        <form ng-submit="viewSignIn()">
+            <fieldset>
+                <legend>View Sign-Ins Here!</legend>
+                <input placeholder="Enter Date" type="text" ng-model="date" ng-required="true">
+                </br>
+                </br>
+                <input type="submit" class="btn btn-outline-secondary" value="View Sign-Ins">
+            </fieldset>
+        </form>
+
+        <div class="container" ng-if="listOfNames.length != 0">
+            <thead>
+                <tr>
+                    <th scope="col">List of Names</th>
+                </tr>
+            </thead>
+            <table class="table table-hover" ng-repeat="x in listOfNames track by $index">
+                <tr>
+                    <td>{{x.name}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>
